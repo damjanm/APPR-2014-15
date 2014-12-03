@@ -28,6 +28,6 @@ uvozitabela1 <- function() {
                     fileEncoding = "UTF-8"))
 }
 
-# Zapišimo podatke v razpredelnico tabela1.
+# Zapišimo podatke v razpredelnico tabela1.ll
 cat("Uvažam podatke...\n")
 t1 <- uvozitabela1()
