@@ -17,3 +17,17 @@ druzine <- uvoziDruzine()
 # datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
 # 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
 # fazah.
+
+# Tabela 1
+
+uvozitabela1 <- function() {
+  return(read.table("podatki/tabela1.csv", sep = ",", as.is = TRUE,
+                    row.names = 1,
+                    col.names = c("instant", "date", "season", "year", "month","holiday","weekday","workingday","weathersit"
+                                  ,"temp","atemp","hum","windspeed","casual","registered","cnt"),
+                    fileEncoding = "UTF-8"))
+}
+
+# Zapišimo podatke v razpredelnico tabela1.
+cat("Uvažam podatke...\n")
+t1 <- uvozitabela1()
