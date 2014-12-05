@@ -48,9 +48,9 @@ stripByPath <- function(x, path) {
 
 
   uvozi.bike <- function(){
-    url.bike <- "http://http://en.wikipedia.org/wiki/List_of_bicycle_sharing_systems"
+    url.bike <- "http://en.wikipedia.org/wiki/List_of_bicycle_sharing_systems"
     doc.bike <- htmlTreeParse(url.bike, useInternalNodes=TRUE)
-}
+
 
 # Pobrišemo nevidno vsebino
 for (t in getNodeSet(doc.bike, "//span[@style='display:none']|//span[@class='sortkey']")) {
@@ -67,22 +67,18 @@ vrstice <- getNodeSet(tabele[[1]], "./tr")
 # Seznam vrstic pretvorimo v seznam (znakovnih) vektorjev
 # s porezanimi vsebinami celic (<td>) neposredno pod trenutnim vozliščem
 seznam <- lapply(vrstice[2:length(vrstice)], stripByPath, "./td") 
+seznam <- lapply(seznam, function(x) x[-11])
 
 # Iz seznama vrstic naredimo matriko
 matrika <- matrix(unlist(seznam), nrow=length(seznam), byrow=TRUE) 
 
 # Imena stolpcev matrike dobimo iz celic glave (<th>) prve vrstice
-colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[1]], ".//th")) 
+colnames(matrika) <- gsub("\n", " ", stripByPath(vrstice[[1]], ".//th")[-11]) 
 
 # Podatke iz matrike spravimo v razpredelnico
-r <- data.frame(apply(gsub(",", "", matrika[,2:10]),2, as.numeric), row.names=matrika[,1])
-names(r) <- c("Country","Continent","Name","System","Status","Year inaugurated","Stations","Bicycles","Website")
-return(r)
-
-
-
-
-
-
-
-
+return(data.frame(matrika[,1:6],
+                  Year.inaugurated = as.numeric(gsub(".*?([0-9]{4}).*", "\\1",
+                                                     matrika[,7])),
+                  apply(gsub(".*?([0-9]*).*", "\\1",
+                             gsub(",", "", matrika[,8:9])), 2, as.numeric)))
+}
