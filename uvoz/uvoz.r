@@ -13,6 +13,7 @@ uvozitabela1 <- function() {
 # Zapišimo podatke v razpredelnico tabela1.
 cat("Uvažam podatke...\n")
 t1 <- uvozitabela1()
+t1$date <- as.Date(t1$date, "%m/%d/%Y")
 
 #Tabela 2
 
@@ -26,6 +27,8 @@ uvozitabela2 <- function() {
 # Zapišimo podatke v razpredelnico tabela2.
 cat("Uvažam podatke...\n")
 t2 <- uvozitabela2()
+t2$Date <- as.Date(t2$Date, "%m/%d/%Y")
+levels(t2$Trip.Duration) <-c("<0.5 hr","0.5 - 1 hr","1 - 1.5 hr","1.5 - 2 hr","2 - 3 hr","3 - 4 hr","4 - 5 hr","5 - 24 hr")
 
 #Tabela 3
 
