@@ -1,6 +1,6 @@
 # Poročilo
 
-# Izbira Teme
+## Izbira Teme
 
   Tema mojega proekta je  Sistemi za souporabo koles. V njem bom obravnaval podatke, pridobljene iz ameriškega podjetja Capital Bikeshare, ki se ukvarja z izposoje koles v kratkem časovnem obdobju (podobno sistemu Bicikelj v Ljubljani). Pogledali bomo katere dejavnike vplivajo na uporabo koles (vreme, temperatura, vlaga, itn), ter kdaj se le-ti največ izposojajo (v katerih urah/mesecah).
   
@@ -14,7 +14,7 @@
 
 3.	http://www.capitalbikeshare.com/system-data
 
-# Obdelava, uvoz in čiščenje podatkov
+## Obdelava, uvoz in čiščenje podatkov
 
 Uporabil sem 4 tabele. Tri tabele sem uvozil v CSV obliki, četrta pa iz spletne strani kot html. Preden sem jih uvozil, sem pobrisal nekatere vrstice/stolpce, ki so bili odveč.
 
