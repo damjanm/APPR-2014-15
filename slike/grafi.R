@@ -5,7 +5,7 @@ names(k2)<-c("Nedelja","Ponedeljek","Torek","Sreda","Četrtek","Petek","Sobota")
 
 #Drugi graf - izračun
 #Seštejemo odhode in prihode v različnih občin.
-k1< sapply(c("Arlington","Alexandria","Wash.","RMC","Rv./SG"), function(x) sum(t2[t2[,4] == x, 5])+sum(t2[t2[,4] == x, 6]))
+k1<- sapply(c("Arlington","Alexandria","Wash.","RMC","Rv./SG"), function(x) sum(t2[t2[,4] == x, 5])+sum(t2[t2[,4] == x, 6]))
 
 
 
