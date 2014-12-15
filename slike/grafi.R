@@ -1,7 +1,7 @@
 # Prvi graf - izračun
 # Seštejemo kolikokrat uporabijo kolesa vo različnih dnev. 0-Nedelja, 1-Ponedeljek, 2-Torek...
 k2 <- sapply(0:6, function(x) sum(t1[t1[,6] == x, 15]))/1000
-names(k2)<-c("Nedelja","Ponedeljek","Torek","Sreda","Četrtek","Petek","Sobota")
+names(k2)<-c("Nedelja","Pon","Torek","Sreda","Četrtek","Petek","Sobota")
 
 #Drugi graf - izračun
 #Seštejemo odhode in prihode v različnih občin.
