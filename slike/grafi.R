@@ -14,7 +14,7 @@ names(k3)<-1995:2014
 
 
 #Risanje grafov
-pdf("slike/grafi1.pdf",paper="a2")
+pdf("slike/grafi1.pdf",paper="a4")
 barplot(k2,main="Uporaba koles v različnih dnev 2011-2012")
 barplot(k1,xlab="Različne občine",ylab="Število odhodov in prihodov",
         main="Število izposojenih koles v Juliju 2014",col="red")
