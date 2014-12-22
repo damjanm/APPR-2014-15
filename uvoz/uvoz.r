@@ -42,3 +42,7 @@ uvozitabela3 <- function() {
 cat("Uvažam podatke...\n")
 t3 <- uvozitabela3()
 
+#Tabela 4
+source("lib/xml.r", encoding="UTF-8")
+cat("Uvažam podatke...\n")
+t4<-uvozi.bike()
