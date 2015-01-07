@@ -5,8 +5,8 @@ source("lib/uvozi.zemljevid.r")
 
 # Uvozimo zemljevid.
 cat("Uvažam zemljevid...\n")
-obcine <- uvozi.zemljevid("http://e-prostor.gov.si/fileadmin/BREZPLACNI_POD/RPE/OB.zip",
-                          "obcine", "OB/OB.shp", mapa = "zemljevid",
+svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
+                          "europa", "ne_110m_admin_0_countries.shp", mapa = "zemljevid",
                           encoding = "Windows-1250")
 
 # Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
