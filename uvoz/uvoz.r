@@ -42,3 +42,11 @@ uvozitabela3 <- function() {
 cat("Uvažam podatke...\n")
 t3 <- uvozitabela3()
 
+#Tabela 4
+source("lib/xml.r", encoding="UTF-8")
+cat("Uvažam podatke...\n")
+t4<-uvozi.bike()
+levels(t4[,2])[36]<-"Russian Federation"
+levels(t4[,2])[49]<-"United States"
+levels(t4[,2])[48]<-"United Kingdom"
+levels(t4[,2])[41]<-"Republic of Korea"
