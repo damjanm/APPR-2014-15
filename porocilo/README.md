@@ -20,7 +20,9 @@ Uporabil sem 4 tabele. Tri tabele sem uvozil v CSV obliki, četrta pa iz spletne
 
 Z grafom sem pokazal razmerje uporaba koles v različnih dnev in se vidi da ni neke bistvene razlike v uporabo, oziroma da število uporabljenih koles se ne poveča bistveno v različnih dnev. Drugi graf pa nam ponazarja da se večinoma uporabnikov nahajajo v Washington D.C, vendar pa je podjetje prisotno tudi v nekaterih drugih občinah.
 
-V nadaljeavnju pa bom analiziral podatke bolj podrobno, ter bom naredil še kakšen graf.
+## Analiza in vizualizacija podatkov
+
+V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov ter očistiti začetne podatke. Na teh zemljevidov sem izpostavil Kitajska (ki je sicer nesporen lider), da bi dobil boljše zemljevide. Na drugem zemljevidu sem razdelil države v 3 skupinah (odvisno od tem koliko postajališč ima vsaka) in vidimo da to ustreza s rezultatom iz prvega zemljevida.
 
 
 

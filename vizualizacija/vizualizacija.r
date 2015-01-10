@@ -30,7 +30,7 @@ preuredi <- function(podatki, zemljevid) {
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 drzave <- levels(t4[,2])
 
-#vektor, ki pove v koliko različnih mestah ima dano državo razvite sisteme
+#Vektor, ki pove v koliko različnih mestah ima dano državo razvite sisteme.
 aa<-c()
 for(i in drzave){
   if(i %in% aa==FALSE){
@@ -43,18 +43,19 @@ for(i in drzave){
   }
 }
 #naredimo urejenostno spremenljivko
-v<-rep("medium",length(drzave))
-v[aa<4]<-"low"
-v[aa>30]<-"high"
+
+v<-rep(2,length(drzave))
+v[aa<4]<-1
+v[aa>30]<-3
 names(v)<-drzave
+#1 - low; 2 - medium; 3 - high
 
 
 
-
-svet$urejenost<-c(0)
+svet$urejenost<-c("na")
+svet$stevilo.koles<-c(0)
 e1<-sapply(drzave, function(x) sum(t4[t4[,2]==x,9], na.rm=TRUE)) #število razpoložvljivih koles v vsaki državi
 names(e1)<-drzave
-svet$stevilo.koles<-c(0)
 k<-data.frame(svet)
 #Nisem tega znal naresti s pomočjo sapply/apply.
 for(j in drzave){
@@ -65,24 +66,32 @@ for(j in drzave){
     }    
   }
 }  
-svet[31,65]<-0 # Kitajska damo stran, ker ima 100 krat več koles. Brez njo dobimo slabši zemljevid.
-spplot(svet, "stevilo.koles", col.regions = c("white",  rainbow(15, start=0, end = 10/12)))
+svet[31,65]<-0 # Kitajska damo stran, ker ima 100 krat več koles. Brez njo dobimo boljši zemljevid.
+
+
+
+#Narišimo zemljevide
+
+cat("Rišem zemljevid...\n")
+pdf("slike/zemljevid1.pdf")
+
+print(spplot(svet, "stevilo.koles", col.regions = c("white",  rainbow(15, 
+                    start=0, end = 10/12)), main="Število razpoložljivih koles v vsaki državi",             
+      par.settings = list(panel.background=list(col="lightblue"))))
+
+dev.off()
 
 
 
 
-# 
-# # Izračunamo povprečno velikost družine.
-# druzine$povprecje <- apply(druzine[1:4], 1, function(x) sum(x*(1:4))/sum(x))
-# min.povprecje <- min(druzine$povprecje, na.rm=TRUE)
-# max.povprecje <- max(druzine$povprecje, na.rm=TRUE)
-# 
-# # Narišimo zemljevid v PDF.
-# cat("Rišem zemljevid...\n")
-# pdf("slike/povprecna_druzina.pdf", width=6, height=4)
-# 
-# n = 100
-# barve = topo.colors(n)[1+(n-1)*(druzine$povprecje-min.povprecje)/(max.povprecje-min.povprecje)]
-# plot(obcine, col = barve)
+colo<-c()
+colo["1"]<-"red"
+colo["2"]<-"blue"
+colo["3"]<-"green"
+cat("Rišem zemljevid...\n")
+pdf("slike/zemljevid2.pdf")
+#Razporedimo države po tem koliko postajališč imajo
+print(plot(svet, col=ifelse(svet$urejenost=="1",colo[1],
+                      ifelse(svet$urejenost=="2",colo[2],ifelse(svet$urejenost=="3",colo[3],"white")))))
 
-# dev.off()
+dev.off()
