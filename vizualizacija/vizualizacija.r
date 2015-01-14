@@ -31,17 +31,7 @@ preuredi <- function(podatki, zemljevid) {
 drzave <- levels(t4[,2])
 
 #Vektor, ki pove v koliko različnih mestah ima dano državo razvite sisteme.
-aa<-c()
-for(i in drzave){
-  if(i %in% aa==FALSE){
-    aa[i]<-0
-  }
-  for(j in 1:347){
-    if(i==t4[j,2]){      
-      aa[i]<-aa[i]+1
-    }
-  }
-}
+aa <- table(t4[,2])
 #naredimo urejenostno spremenljivko
 
 v<-rep(2,length(drzave))
@@ -51,21 +41,14 @@ names(v)<-drzave
 #1 - low; 2 - medium; 3 - high
 
 
-
-svet$urejenost<-c("na")
-svet$stevilo.koles<-c(0)
 e1<-sapply(drzave, function(x) sum(t4[t4[,2]==x,9], na.rm=TRUE)) #število razpoložvljivih koles v vsaki državi
 names(e1)<-drzave
-k<-data.frame(svet)
-#Nisem tega znal naresti s pomočjo sapply/apply.
-for(j in drzave){
-  for(i in 1:177){  
-    if(k[i,19]==j){
-      svet[i,65]<-e1[j]
-      svet[i,64]<-v[j]
-    }    
-  }
-}  
+m <- match(svet$name_long, drzave)
+svet$urejenost <- v[m]
+svet$stevilo.koles <- e1[m]
+
+
+
 svet[31,65]<-0 # Kitajska damo stran, ker ima 100 krat več koles. Brez njo dobimo boljši zemljevid.
 
 
@@ -76,8 +59,7 @@ cat("Rišem zemljevid...\n")
 pdf("slike/zemljevid1.pdf")
 
 print(spplot(svet, "stevilo.koles", col.regions = c("white",  rainbow(15, 
-                    start=0, end = 10/12)), main="Število razpoložljivih koles v vsaki državi",             
-      par.settings = list(panel.background=list(col="lightblue"))))
+                    start=0, end = 10/12)), main="Število razpoložljivih koles v vsaki državi"))
 
 dev.off()
 

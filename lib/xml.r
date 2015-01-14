@@ -6,7 +6,9 @@ library(XML)
 # iz vozlišč, ki ustrezajo podani poti.
 stripByPath <- function(x, path) {
   unlist(xpathApply(x, path,
-                    function(y) gsub("^\\s*(.*?)\\s*$", "\\1", xmlValue(y))))
+                    function(y) gsub("[^[:alnum:] .,;'`‘’!+-/&()\n]", "",
+                                     gsub("\\[[^]]*?\\]", "",
+                                          gsub("^\\s*(.*?)\\s*$", "\\1", xmlValue(y))))))
 }
 
 
