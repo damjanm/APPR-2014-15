@@ -73,7 +73,13 @@ colo["3"]<-"green"
 cat("Rišem zemljevid...\n")
 pdf("slike/zemljevid2.pdf")
 #Razporedimo države po tem koliko postajališč imajo
-print(plot(svet, col=ifelse(svet$urejenost=="1",colo[1],
-                      ifelse(svet$urejenost=="2",colo[2],ifelse(svet$urejenost=="3",colo[3],"white")))))
+plot(svet, col=ifelse(svet$urejenost=="1",colo[1],
+                      ifelse(svet$urejenost=="2",colo[2],ifelse(svet$urejenost=="3",colo[3],"white"))),
+      main="Porazdelitev držav v treh skupinah")
+legend("bottom", legend = c("1. cona - države, ki imajo razvite sisteme v manj kot 4 mesta"
+                                ,"2. cona - države, ki imajo razvite sisteme v 4-30 mest",
+                                "3. cona - države, ki imajo razvite sisteme v več kot 30 mest"),
+       fill = c("red","blue","green"), bg = "white")
+
 
 dev.off()
