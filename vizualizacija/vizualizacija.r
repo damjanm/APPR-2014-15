@@ -47,6 +47,8 @@ m <- match(svet$name_long, drzave)
 svet$urejenost <- v[m]
 svet$stevilo.koles <- e1[m]
 
+svet$st.koles.prebivalstvo<-sapply(1:177, 
+                                   function(x) svet$stevilo.koles[x]/svet$pop_est[x])
 
 
 svet[31,65]<-0 # Kitajska damo stran, ker ima 100 krat več koles. Brez njo dobimo boljši zemljevid.
@@ -60,6 +62,10 @@ pdf("slike/zemljevid1.pdf")
 
 print(spplot(svet, "stevilo.koles", col.regions = c("white",  rainbow(15, 
                     start=0, end = 10/12)), main="Število razpoložljivih koles v vsaki državi"))
+
+print(spplot(svet, "st.koles.prebivalstvo", col.regions = c("white",  rainbow(15, 
+                                                        start=0, end = 10/12)), main="Razmerje med število koles in število prebivalcev"))
+
 
 dev.off()
 
