@@ -42,6 +42,7 @@ uvozitabela3 <- function() {
 cat("Uvažam podatke...\n")
 t3 <- uvozitabela3()
 
+
 #Tabela 4
 source("lib/xml.r", encoding="UTF-8")
 cat("Uvažam podatke...\n")
@@ -50,3 +51,16 @@ levels(t4[,2])[36]<-"Russian Federation"
 levels(t4[,2])[49]<-"United States"
 levels(t4[,2])[48]<-"United Kingdom"
 levels(t4[,2])[41]<-"Republic of Korea"
+
+#Tabela 5
+
+uvozitabela5 <- function() {
+  return(read.csv("podatki/hour.csv", sep = ",", as.is = TRUE,
+                  col.names = c("instant", "date", "season", "year", "month","hour","holiday","weekday","workingday","weathersit"
+                                ,"temp","atemp","hum","windspeed","casual","registered","cnt"),
+                  fileEncoding = "UTF-8"))
+}
+
+# Zapišimo podatke v razpredelnico tabela3.
+cat("Uvažam podatke...\n")
+t5 <- uvozitabela5()

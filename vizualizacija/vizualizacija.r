@@ -47,24 +47,23 @@ m <- match(svet$name_long, drzave)
 svet$urejenost <- v[m]
 svet$stevilo.koles <- e1[m]
 
-svet$st.koles.prebivalstvo<-sapply(1:177, 
-                                   function(x) svet$stevilo.koles[x]/svet$pop_est[x])
-
 
 svet[31,65]<-0 # Kitajska damo stran, ker ima 100 krat več koles. Brez njo dobimo boljši zemljevid.
 
-
+#Statistični podatki za 1. zemljevid
+med1<-median(svet$stevilo.koles[!is.na(svet$stevilo.koles)]) #790
+mean1<-mean(svet$stevilo.koles,na.rm=TRUE) #3593.204
+sd1<-sd(svet$stevilo.koles,na.rm=TRUE) #7690.308
 
 #Narišimo zemljevide
 
 cat("Rišem zemljevid...\n")
 pdf("slike/zemljevid1.pdf")
 
+
+
 print(spplot(svet, "stevilo.koles", col.regions = c("white",  rainbow(15, 
                     start=0, end = 10/12)), main="Število razpoložljivih koles v vsaki državi"))
-
-print(spplot(svet, "st.koles.prebivalstvo", col.regions = c("white",  rainbow(15, 
-                                                        start=0, end = 10/12)), main="Razmerje med število koles in število prebivalcev"))
 
 
 dev.off()
@@ -86,6 +85,21 @@ legend("bottom", legend = c("1. cona - države, ki imajo razvite sisteme v manj 
                                 ,"2. cona - države, ki imajo razvite sisteme v 4-30 mest",
                                 "3. cona - države, ki imajo razvite sisteme v več kot 30 mest"),
        fill = c("red","blue","green"), bg = "white")
+
+
+dev.off()
+
+
+svet$st.koles.prebivalstvo<-sapply(1:177, 
+                                   function(x) svet$stevilo.koles[x]/svet$pop_est[x])
+
+
+cat("Rišem zemljevid...\n")
+pdf("slike/zemljevid3.pdf")
+
+print(spplot(svet, "st.koles.prebivalstvo", 
+             col.regions = c("white",rainbow(15, start=0, end = 10/12)), 
+             main="Razmerje med število razpoložljivih koles in število prebivalcev"))
 
 
 dev.off()

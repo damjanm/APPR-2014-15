@@ -34,26 +34,92 @@ Analiza podatkov s programom R}
 
 \section{Obdelava, uvoz in čiščenje podatkov}
 
-Uporabil sem 4 tabele. Tri tabele sem uvozil v CSV obliki, četrta pa iz spletne strani kot html. Preden sem jih uvozil, sem pobrisal nepotrebne vrstice in stolpce.
+Uporabil sem 5 tabel. Štiri tabele sem uvozil v CSV obliki, peta pa iz spletne strani kot html. Preden sem jih uvozil, sem pobrisal nepotrebne vrstice in stolpce.
 
-Na spodnjih grafih sem prikazal in primerjal uporabo koles med tednom. Lahko sklepamo, da ni bistvene razlike v uporabi, oziroma da število uporabljenih koles se ne spreminja v različnih dnevih. Drugi graf ponazarja, da se večinoma uporabnikov nahajajo v Washington D.C, vendar pa je podjetje prisotno tudi v nekaterih drugih ameriških mestah. Na tretjem grafu pa vidimo, da se je trend uporabe takšnih sistemov povečal v zadnjih letih.
+Na spodnjih grafih sem prikazal in primerjal uporabo koles med tednom. Lahko sklepamo, da ni bistvene razlike v uporabi, oziroma da se število uporabljenih koles ne spreminja v različnih dnevih. Uporaba v različnih urah enem dnevu se pa razlikuje. Tretji graf ponazarja, da se večinoma uporabnikov nahajajo v Washington D.C, vendar pa je podjetje prisotno tudi v nekaterih drugih ameriških mestah. Na četrtem grafu pa vidimo, da se je trend uporabe takšnih sistemov povečal v zadnjih letih.
 
+\makebox[\textwidth][l]{
+\includegraphics[width=0.9\textwidth]{../slike/grafi1.pdf}
+}
+Iz iste tabele sem pogledal dejavniki, ki vplivajo na uporabo koles in sem posledično izračunal kovarianco med naslednjimi spremenljivkami:
+\begin{itemize}
+\item{Kovarianca med temperaturo in število uporabnikov: 0.6310657;}
+\item{Kovarianca med moč vetra in število uporabnikov: -0.234545}
+\item{Kovarianca med vlaga in število uporabnikov: -0.1006586}
+\end{itemize}
+Dobili smo pričakovane rezultate. 
 
-\includepdf[pages={1-3}]{../slike/grafi1.pdf}
+\includepdf{../slike/grafi3.pdf}
+
+\includepdf[pages={1-2}]{../slike/grafi1a.pdf}
 
 
 \section{Analiza in vizualizacija podatkov}
 
-V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov, ki se razlikujejo od začetnih. Na prvem zemljevidu sem zanemaril Kitajsko (ki je sicer nesporni lider v sistemih te vrste), da bi dobil boljši zemljevid. Na drugem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema) in vidimo, da to ustreza rezultatu, ki je prikazan na prvemu zemljevidu.
+V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov, ki se razlikujejo od začetnih. Na prvem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema). Na drugem zemljevidu sem zanemaril Kitajsko (ki je sicer nesporni lider v sistemih te vrste), da bi dobil boljši zemljevid. Na prvem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema). Vidimo, da to ustreza rezultatu, ki je prikazan na prvemu zemljevidu.
 
+Čeprav iz zemljevidov ni razvidno, s pomočjo statisničnih orodjih sem ugotovil, da so podatke razpršene. Po izračunu sem dobil, da je mediana 790, sredina 3593.204, ter standardni odklon 7690.308. Torej lahko sklepamo, da večinoma držav imajo majhno število razpoložljivih koles. 
+
+\makebox[\textwidth][l]{
+\includegraphics[width=0.9\textwidth]{../slike/zemljevid2.pdf}
+}
+
+\newpage
 \includegraphics[width=\textwidth]{../slike/zemljevid1.pdf}
 
-\includegraphics[width=\textwidth]{../slike/zemljevid2.pdf}
+\section{Napredna analiza podatkov}
+
+  V zadnji fazi sem pogledal kakšne zaključke lahko izvlečemo iz tabel, ki sem jih obravnaval. Uporabil sem metode, ki smo jih imeli na vajah (prileganje), nasvete iz zadnje predstavitve, ter orodja, ki so bili dani v virih na spletni učilnici.
+
+  Najprej sem narisal zemljevid, ki prikazuje razmerje med številom razpoložljivih koles in številom prebivalcev, torej zemljevid podoben drugemu zemljevidu iz prejšnje faze. Dobili smo:
+\newpage
+\begin{figure}[t]
+\makebox[\textwidth][c]{
+\includegraphics[width=1.1\textwidth]{../slike/zemljevid3.pdf}
+}
+\end{figure}
+\makebox[\textwidth][c]{
+\includegraphics[width=1\textwidth]{../slike/grafi4.pdf}
+}
+
+\newpage
+
+Ker iz zemljevida ni razvidno katere države imajo najboljše razmere, sem naredil graf na kateremu se vidijo prvih 5 držav. 
+
+Poleg tega, sem uporabil še metode za prileganje podatkom o novih odprtih sistemih skozi čas. Dobil sem naslednji graf:
+\begin{figure}[h]
+\makebox[\textwidth][c]{
+\includegraphics[width=1.4\textwidth]{../slike/grafi2.pdf}
+}
+\end{figure}
+
+Ker ne moremo grobo oceniti katera metoda je najboljša izračunal sem vsote residualov in sem dobil:
+
+\begin{itemize}
+\item{Linearna metoda: 2259.0128}
+\item{Kvadratna metoda: 1055.2984}
+\item{Funkcija loess: 802.6469}
+\item{Funkcija gam: 791.2780}
+\end{itemize}
+
+Sklepamo, da je funkcija \verb|gam| najbolj ustrezna za prileganje podatkom.
 
 
-% 
-% \section{Napredna analiza podatkov}
-% 
-% \includegraphics{../slike/naselja.pdf}
+\newpage
+\section{Zaključek}
+
+Pogledali smo si stanje in trendi na svetovni ravni o sistemih za souporabo koles, navade, ki jih imajo kolesarji, ter dejavniki, ki vplivajo na uporabo. Pri tem sem poskusil uporabiti čim več različnih načinov analize podatkov.
+
+
+\newpage
+\begin{thebibliography}{3}
+\bibitem{1}
+  \url{http://cabidashboard.ddot.dc.gov/cabidashboard/#Home}\\
+\bibitem{2}
+  \url{https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset}\\
+\bibitem{3}
+  \url{http://www.capitalbikeshare.com/system-data}\\
+
+\end{thebibliography}
 
 \end{document}
