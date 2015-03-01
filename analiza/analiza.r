@@ -34,8 +34,8 @@ mgam1 <- gam(k3 ~ s(c))
 curve(predict(mgam1, data.frame(c=x)), add = TRUE, col = "purple")
 
 
-legend("topleft", legend=c("Linearna metoda", 
-                              "Kvadratna medtoda", "Loess", "Gam"), lty="solid", 
+legend("topleft", legend=c("Linearna: lm(sistemi ~ leto)", 
+                              "Kvadratna: lm(sistemi ~ I(leto^2) + leto)", "Loess", "Gam"), lty="solid", 
        cex = 0.8, col = c("blue", "red", "green","purple"))
 
 

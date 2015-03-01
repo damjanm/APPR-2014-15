@@ -18,7 +18,7 @@ Analiza podatkov s programom R}
 
   Tema mojega proekta je Sistemi za souporabo koles. V njem bom obravnaval podatke, pridobljene iz ameriškega podjetja Capital Bikeshare, ki velja za eden od največjih sistemov na svetovni ravni in se ukvarja z izposojo koles v kratkem časovnem obdobju (podobno sistemu Bicikelj v Ljubljani). V nadaljevanju bomo pogledali koliko se uporabljajo te sisteme v različnih državah. 
   
-  Cilj projekta je raziskati možnosti optimizacije za izposojo koles na podlagi številk polnih/praznih postajališč, številk uporabnikov v določenem obdobju in številk poškodovanih koles.
+  Cilj projekta je raziskati možnosti optimizacije za izposojo koles na podlagi številk  uporabnikov v določenem obdobju ter pogledati stanje na svetovni ravni.
   
   Povezave do podatkov:
   
@@ -35,6 +35,20 @@ Analiza podatkov s programom R}
 \section{Obdelava, uvoz in čiščenje podatkov}
 
 Uporabil sem 5 tabel. Štiri tabele sem uvozil v CSV obliki, peta pa iz spletne strani kot html. Preden sem jih uvozil, sem pobrisal nepotrebne vrstice in stolpce.
+
+\begin{enumerate}
+
+\item{tabela: Prikazuje podatke o opazovanjih v letih 2011 in 2012. Vsebuje naslednje spremenljivke: date (imenska), season (številska, letni čas; 1-spomlad, 2-poletje, 3-jesen, 4-zima), year (številska, 0 - 2011, 1 - 2012), month (številska, od 1 do 12), holiday (številska, 0 - ni praznik, 1 - je praznik ), weekday (številska, od 0 do 6), workingday (številska, 1 - delovni dan, 0 - sicer ), weathersit (številska, od 1 do 4, vremensko stanje), temp (številska, temperatura v Celzij med 0 in 1), atemp (številska, občutna temperatura med 0 in 1), hum (številska, vlaga, med 0 in 1),	windspeed (številska, moč vetra, med 0 in 1),	casual (številska, število občasnih uporabnikov),	registered (številska, število registriranih uporabnikov),	cnt (številska, casual+registered).}
+
+\item{tabela: Prikazuje podatke o opazovanjih v letu 2014. Vsebuje naslednje spremenljivke: Date (imenska), Municipality	(imenska), Trip.Duration (imenska; razdeli potovanja v nekoliko skupinah, odvisno od tega koliko so trajala),	Membership.Type (imenska),	No..of.Trips (številska),	Miles.Travelled (številska).}
+
+\item{tabela: Prikazuje podatke o opazovanjih v juliju 2014. Vsebuje naslednje spremenljivke: Year (imenska), Month (imenska), Station.Name (imenska),	Municipality (imenska), Departures (številska, število odhodov),	Arrivals (številska, število prihodov).}
+
+\item{tabela: Prikazuje stanje na svetovni ravni. Vsebuje naslednje spremenljivke:  City (imenska),	Country (imenska),	Continent (imenska), Name (imenska, ime podjetja),	System (imenska, ime sistema),	Status (imenska, Active/Closed),	Year.inaugurated (številska, leta otvoritev),	Stations (številska, število postajališč), Bicycles (številska, število koles).}
+
+\item{tabela: Podobna prvi tabeli, le da vsebuje še številsko spremenljivko hour. Ker vsak dan (vsako vrstico) iz prve tabele sem razdelil na 24 vrstic, tabela je nekaj večja, vendar pa nisem imel težav z njo delati.}
+
+\end{enumerate}
 
 Na spodnjih grafih sem prikazal in primerjal uporabo koles med tednom. Lahko sklepamo, da ni bistvene razlike v uporabi, oziroma da se število uporabljenih koles ne spreminja v različnih dnevih. Uporaba v različnih urah enem dnevu se pa razlikuje. Tretji graf ponazarja, da se večinoma uporabnikov nahajajo v Washington D.C, vendar pa je podjetje prisotno tudi v nekaterih drugih ameriških mestah. Na četrtem grafu pa vidimo, da se je trend uporabe takšnih sistemov povečal v zadnjih letih.
 
