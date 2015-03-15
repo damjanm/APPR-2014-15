@@ -1,9 +1,27 @@
 # 4. faza: Analiza podatkov
-
+source("lib/uvozi.zemljevid.r")
 # Uvozimo funkcijo za uvoz spletne strani.
 source("lib/xml.r")
 library(mgcv)
+library(dplyr)
 
+# Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
+preuredi <- function(podatki, zemljevid) {
+  nove.svet <- c()
+  manjkajo <- ! nove.svet %in% rownames(podatki)
+  M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
+  names(M) <- names(podatki)
+  row.names(M) <- nove.svet[manjkajo]
+  podatki <- rbind(podatki, M)
+  
+  out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$NAME_1)[rank(zemljevid$NAME_1)]), ]
+  if (ncol(podatki) == 1) {
+    out <- data.frame(out)
+    names(out) <- names(podatki)
+    rownames(out) <- rownames(podatki)
+  }
+  return(out)
+}
 
 # Narišemo graf v datoteko PDF.
 cat("Rišem graf...\n")
@@ -16,6 +34,7 @@ plot(c, k3,
      xlab = "",
      ylab = "",
 )
+
 
 #LINEARNA METODA
 lin <- lm(k3 ~ c)
@@ -38,10 +57,10 @@ legend("topleft", legend=c("Linearna: lm(sistemi ~ leto)",
                               "Kvadratna: lm(sistemi ~ I(leto^2) + leto)", "Loess", "Gam"), lty="solid", 
        cex = 0.8, col = c("blue", "red", "green","purple"))
 
-
+dev.off()
 vsota.kvadratov<-sapply(list(lin, kv, mls1, mgam1), function(x) sum(x$residuals^2))
 #  2259.0128  1055.2984  802.6469  791.2780
-dev.off()
+
 
 cat("Rišem graf...\n")
 cairo_pdf("slike/grafi4.pdf", width = 9.27, height = 5.69, family = "Arial") 
@@ -54,5 +73,36 @@ names(rr)<-drzavee
 
 barplot(rr, main= "Prvih pet držav z najboljšimi razmerji med 
                število razpoložljivih koles in število prebivalcev")
+
+dev.off()
+
+
+#ANIMACIJA
+koordinate<-coordinates(svet[,])
+imena <- as.character(svet$name)
+rownames(koordinate) <- imena
+names(imena) <- imena
+
+zz<-levels(t4$Country)
+cc1<-select(t4,Country,Year.inaugurated,Bicycles)
+cc2<-group_by(cc1, Country,Year.inaugurated)
+cc3<-summarise(cc2, st=sum(Bicycles,na.rm=TRUE))
+cc3<-cc3[!is.na(cc3[,2]),]
+aq95<-data.frame(cc3[cc3[,2]==1995,])
+aq97<-data.frame(cc3[cc3[,2]==1997,])
+
+# Narišimo zemljevid v PDF.
+cat("Rišem zemljevid...\n")
+cairo_pdf("slike/anim1.pdf",width = 9.27, height = 5.69, family = "Arial", 
+          onefile = TRUE)
+
+plot(svet)
+title("Nove sisteme v 1995")
+points(koordinate[zz[aq95[,1]],c(1,2)],pch=16,col="red",cex=1.3)
+
+
+plot(svet)
+title("Nove sisteme v 1997")
+points(koordinate[zz[aq97[,1]],c(1,2)],pch=16,col="red",cex=1.3)
 
 dev.off()
