@@ -84,12 +84,30 @@ rownames(koordinate) <- imena
 names(imena) <- imena
 
 zz<-levels(t4$Country)
+zz1<-levels(svet$name_long)
 cc1<-select(t4,Country,Year.inaugurated,Bicycles)
 cc2<-group_by(cc1, Country,Year.inaugurated)
 cc3<-summarise(cc2, st=sum(Bicycles,na.rm=TRUE))
 cc3<-cc3[!is.na(cc3[,2]),]
+
 aq95<-data.frame(cc3[cc3[,2]==1995,])
 aq97<-data.frame(cc3[cc3[,2]==1997,])
+aq98<-data.frame(cc3[cc3[,2]==1998,])
+aq00<-data.frame(cc3[cc3[,2]==2000,])
+aq01<-data.frame(cc3[cc3[,2]==2001,])
+aq03<-data.frame(cc3[cc3[,2]==2003,])
+aq04<-data.frame(cc3[cc3[,2]==2004,])
+aq05<-data.frame(cc3[cc3[,2]==2005,])
+aq06<-data.frame(cc3[cc3[,2]==2006,])
+aq07<-data.frame(cc3[cc3[,2]==2007,])
+aq08<-data.frame(cc3[cc3[,2]==2008,])
+aq09<-data.frame(cc3[cc3[,2]==2009,])
+aq10<-data.frame(cc3[cc3[,2]==2010,])
+aq11<-data.frame(cc3[cc3[,2]==2011,])
+aq12<-data.frame(cc3[cc3[,2]==2012,])
+aq13<-data.frame(cc3[cc3[,2]==2013,])
+aq14<-data.frame(cc3[cc3[,2]==2014,])
+
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid...\n")
@@ -103,6 +121,80 @@ points(koordinate[zz[aq95[,1]],c(1,2)],pch=16,col="red",cex=1.3)
 
 plot(svet)
 title("Nove sisteme v 1997")
-points(koordinate[zz[aq97[,1]],c(1,2)],pch=16,col="red",cex=1.3)
+points(koordinate[zz[aq97[,1]],1],koordinate[zz[aq97[,1]],2],pch=16,col="red",cex=1.3)
 
+plot(svet)
+title("Nove sisteme v 1998")
+points(koordinate[zz[aq98[,1]],1],koordinate[zz[aq98[,1]],2],pch=16,col="red",cex=1.3)
+
+plot(svet)
+title("Nove sisteme v 2000")
+points(koordinate[zz[aq00[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3)
+
+plot(svet)
+title("Nove sisteme v 2001")
+points(koordinate[zz[aq01[,1]],1],koordinate[zz[aq01[,1]],2],pch=16,col="red",cex=1.3)
+
+plot(svet)
+title("Nove sisteme v 2003")
+points(koordinate[zz[aq03[,1]],c(1,2)],pch=16,col="red",
+       cex=1+aq03[,3]/norm(as.matrix(aq03[,3])))
+
+plot(svet)
+title("Nove sisteme v 2004")
+points(koordinate[zz[aq04[,1]],1],koordinate[zz[aq04[,1]],2],pch=16,col="red",cex=1.3)
+
+plot(svet)
+title("Nove sisteme v 2005")
+points(koordinate[zz[aq05[,1]],c(1,2)],pch=16,col="red",
+       cex=1+aq05[,3]/norm(as.matrix(aq05[,3])))
+
+plot(svet)
+title("Nove sisteme v 2006")
+points(koordinate[zz[aq06[,1]],c(1,2)],pch=16,col="red",
+       cex=1+aq06[,3]/norm(as.matrix(aq06[,3])))
+
+plot(svet)
+title("Nove sisteme v 2007")
+points(koordinate[zz[aq07[,1]],c(1,2)],pch=16,col="red",
+       cex=1+aq07[,3]/norm(as.matrix(aq07[,3])))
+
+zz[aq08[8,1]]<-"Korea"
+plot(svet)
+title("Nove sisteme v 2008")
+points(koordinate[zz[aq08[,1]],1],koordinate[zz[aq08[,1]],2],pch=16,
+       col="red",cex=1.3+aq08[,3]/norm(as.matrix(aq08[,3])))
+
+plot(svet)
+title("Nove sisteme v 2009")
+points(koordinate[zz[aq09[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq09[,3]/norm(as.matrix(aq09[,3])))
+
+plot(svet)
+title("Nove sisteme v 2010")
+points(koordinate[zz[aq10[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq10[,3]/norm(as.matrix(aq10[,3])))
+
+plot(svet)
+title("Nove sisteme v 2011")
+points(koordinate[zz[aq11[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq11[,3]/norm(as.matrix(aq11[,3])))
+
+plot(svet)
+title("Nove sisteme v 2012")
+points(koordinate[zz[aq12[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq12[,3]/norm(as.matrix(aq12[,3])))
+
+
+zz[aq13[14,1]]<-"Russia"
+plot(svet)
+title("Nove sisteme v 2013")
+points(koordinate[zz[aq13[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq13[,3]/norm(as.matrix(aq13[,3])))
+
+plot(svet)
+title("Nove sisteme v 2014")
+points(koordinate[zz[aq14[,1]],c(1,2)],pch=16,col="red",
+       cex=1.3+aq14[,3]/norm(as.matrix(aq14[,3])))
 dev.off()

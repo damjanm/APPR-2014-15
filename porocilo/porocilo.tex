@@ -2,19 +2,26 @@
 
 \usepackage[slovene]{babel}
 \usepackage[utf8x]{inputenc}
-\usepackage{graphicx}
+ \usepackage[unicode]{hyperref}
+\usepackage{graphics}
 \usepackage{pdfpages}
 \usepackage{hyperref}
+\usepackage{animate}
+\usepackage[font=small,skip=0pt]{caption}
+\usepackage{float}
+
 
 \pagestyle{plain}
 
 \begin{document}
 \title{Poročilo pri predmetu \\
-Analiza podatkov s programom R}
+Analiza podatkov s programom R \\
+Sistemi za souporabo koles}
 \author{Damjan Manevski}
 \maketitle
 
 \section{Izbira teme}
+
 
   Tema mojega proekta je Sistemi za souporabo koles. V njem bom obravnaval podatke, pridobljene iz ameriškega podjetja Capital Bikeshare, ki velja za eden od največjih sistemov na svetovni ravni in se ukvarja z izposojo koles v kratkem časovnem obdobju (podobno sistemu Bicikelj v Ljubljani). V nadaljevanju bomo pogledali koliko se uporabljajo te sisteme v različnih državah. 
   
@@ -70,7 +77,7 @@ Dobili smo pričakovane rezultate.
 
 \section{Analiza in vizualizacija podatkov}
 
-V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov, ki se razlikujejo od začetnih. Na prvem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema). Na drugem zemljevidu sem zanemaril Kitajsko (ki je sicer nesporni lider v sistemih te vrste), da bi dobil boljši zemljevid. Na prvem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema). Vidimo, da to ustreza rezultatu, ki je prikazan na prvemu zemljevidu.
+V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov, ki se razlikujejo od začetnih. Na prvem zemljevidu sem razdelil države v 3 skupinah (v odvisnosti od števila mest, ki uporabljajo tega sistema). Na drugem zemljevidu sem zanemaril Kitajsko (ki je sicer nesporni lider v sistemih te vrste), da bi dobil boljši zemljevid. Vidimo, da to ustreza rezultatu, ki je prikazan na prvemu zemljevidu.
 
 Čeprav iz zemljevidov ni razvidno, s pomočjo statisničnih orodjih sem ugotovil, da so podatke razpršene. Po izračunu sem dobil, da je mediana 790, sredina 3593.204, ter standardni odklon 7690.308. Torej lahko sklepamo, da večinoma držav imajo majhno število razpoložljivih koles. 
 
@@ -98,6 +105,7 @@ V tej fazi sem naredil dva zemljevida. Potrebno je bilo dodati nekaj podatkov, k
 
 \newpage
 
+
 Ker iz zemljevida ni razvidno katere države imajo najboljše razmere, sem naredil graf na kateremu se vidijo prvih 5 držav. 
 
 Poleg tega, sem uporabil še metode za prileganje podatkom o novih odprtih sistemih skozi čas. Dobil sem naslednji graf:
@@ -117,6 +125,13 @@ Ker ne moremo grobo oceniti katera metoda je najboljša izračunal sem vsote res
 \end{itemize}
 
 Sklepamo, da je funkcija \verb|gam| najbolj ustrezna za prileganje podatkom.
+
+
+\begin{center}
+\animategraphics[controls,loop,width=1.2\linewidth]{1}{../slike/anim1}{}{}\\
+\end{center}
+
+Za konec sem naredil animacijo, ki prikazuje kje so se odpirali nove sisteme v odbodju 1995-2014. Pri tem sem razvrstil podatke po letih in sem število novih koles v vsaki državi normiral, s ciljem da bo velikost točk odvisna od števila koles.
 
 
 \newpage
